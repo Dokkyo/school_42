@@ -25,9 +25,9 @@ void	refresh_buf(char *b)
 	if (b[j] == '\n')
 		++j;
 	i = 0;
-	while (b[i])
+	while (b[i] != '\0')
 		b[i++] = b[j++];
-	while (b[i])
+	while (b[i] != '\0')
 		b[i++] = 0;
 }
 
@@ -46,17 +46,23 @@ char	*get_next_line(int fd)
 	while (rbytes > 0 && !lookfor_nl(buf))
 	{
 		rbytes = read(fd, buf, BUFFER_SIZE);
-		buf[rbytes] = 0;
+		printf("buf1: -%s- ", buf);
+//		buf[rbytes] = 0;
+		printf("buf2: -%s-\n", buf);
 		if (rbytes)
+		{
+			buf[rbytes] = 0;
 			line = ft_strjoin(line, buf);
+		}
 		else if (rbytes == -1)
 			return (NULL);
-		else
+/*		else
 		{
 			free(line);
 			line = NULL;
 			return (line);
-		}
+		}*/
+		printf("line: -%s-", line);
 	}
 //	printf("buf before:%s", buf);
 /*	if (lookfor_nl(buf))
@@ -65,6 +71,7 @@ char	*get_next_line(int fd)
 		line[i] = '\n';
 	}*/
 	refresh_buf(buf);
+	printf("buf after refresh: -%s-\n", buf);
 //	printf("buf after:%s", buf);
 /*	if (!lookfor_nl(buf))
 	{
@@ -87,31 +94,30 @@ int main()
 		line = get_next_line(ret);
 		printf("main : %s", line);
 		free(line);
-		line = get_next_line(ret);
-		printf("main : %s", line);
-		free(line);
-		line = get_next_line(ret);
-		printf("main : %s", line);
-		free(line);
-		line = get_next_line(ret);
-		printf("main : %s", line);
-		free(line);
-		line = get_next_line(ret);
-		printf("main : %s", line);
-		free(line);
 /*		line = get_next_line(ret);
+		printf("main : %s", line);
+		free(line);
+		line = get_next_line(ret);
+		printf("main : %s", line);
+		free(line);
+		line = get_next_line(ret);
+		printf("main : %s", line);
+		free(line);
+		line = get_next_line(ret);
+		printf("main : %s", line);
+		free(line);
+		line = get_next_line(ret);
 		printf("main : %s", line);
 		free(line);
 		line = get_next_line(ret);
 		printf("main : %s", line);
 		free(line);*/
 
-/*	while (line != NULL)
-	{
-		line = get_next_line(ret);
-		printf("main %s", line);
-		free(line);
-	}*/
-	return (0);
+//	while (line != NULL)
+//	{
+//		line = get_next_line(ret);
+//		printf("main %s", line);
+//		free(line);
+//	}
+//	return (0);
 }
-
