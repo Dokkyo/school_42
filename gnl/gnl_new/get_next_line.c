@@ -46,9 +46,9 @@ char	*get_next_line(int fd)
 	while (rbytes > 0 && !lookfor_nl(buf))
 	{
 		rbytes = read(fd, buf, BUFFER_SIZE);
-		printf("buf1: -%s- ", buf);
+//		printf("buf1: -%s- ", buf);
 //		buf[rbytes] = 0;
-		printf("buf2: -%s-\n", buf);
+//		printf("rbytes: -%d-\n", rbytes);
 		if (rbytes)
 		{
 			buf[rbytes] = 0;
@@ -56,13 +56,18 @@ char	*get_next_line(int fd)
 		}
 		else if (rbytes == -1)
 			return (NULL);
-/*		else
+		else if (rbytes == 0 && buf[0] != 0)
+		{
+			refresh_buf(buf);
+			return (line);
+		}
+		else
 		{
 			free(line);
 			line = NULL;
 			return (line);
-		}*/
-		printf("line: -%s-", line);
+		}
+		printf("line: -%s-\n", line);
 	}
 //	printf("buf before:%s", buf);
 /*	if (lookfor_nl(buf))
@@ -78,6 +83,14 @@ char	*get_next_line(int fd)
 		i = ft_strlen(line);
 		line[i] = 0;
 	}*/
+//	printf("%d\n", rbytes);
+/*	if (rbytes == 0)
+	{
+		free(line);
+		line = NULL;
+		return (line);
+	}*/
+//	printf("%d", rbytes);
 	return (line);
 }
 
@@ -87,7 +100,10 @@ int main()
 	char	*line;
 	
 	line = "";
-	ret = open("test.txt", O_RDONLY);
+	ret = open("test1.txt", O_RDONLY);
+		line = get_next_line(ret);
+		printf("main : %s", line);
+		free(line);
 		line = get_next_line(ret);
 		printf("main : %s", line);
 		free(line);
@@ -95,9 +111,6 @@ int main()
 		printf("main : %s", line);
 		free(line);
 /*		line = get_next_line(ret);
-		printf("main : %s", line);
-		free(line);
-		line = get_next_line(ret);
 		printf("main : %s", line);
 		free(line);
 		line = get_next_line(ret);
