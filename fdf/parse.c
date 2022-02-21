@@ -46,7 +46,7 @@ void    ft_GetNbrAfterSplit(char **tab, t_Dlist *p_list)
     i = 0;
     while (i < p_list->width)
     {
-        j = dlist_append(p_list, tab[i], i);
+        j = dlist_append(p_list, tab[i]);
         if (j == -1)
         {
             ft_free(p_list);
@@ -84,4 +84,30 @@ void    ParseOn(t_Dlist *p_list, int fd){
         }
         line = get_next_line(fd);
     }
+}
+
+int		**ft_fill_board(int **board, t_Dlist *p_list)
+{
+	int i;
+	int j;
+
+	i = 0;
+	board = malloc(sizeof(board) * p_list->height);
+	if (!board)
+		return (0);
+	while (i < p_list->height)
+	{
+		j = 0;
+		board[i] = malloc(sizeof(board[i]) * p_list->width);
+		if (!board[i])
+			return (0);
+		while (j < p_list->width)
+		{
+			board[i][j] = p_list->p_head->z;
+			j++;
+            p_list->p_head = p_list->p_head->p_next;
+		}
+		i++;
+	}
+	return (board);
 }

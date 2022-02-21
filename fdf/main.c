@@ -7,8 +7,8 @@ int     main(int ac, char **av)
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
-    int     i = 0;
-    int     j = 0;
+    double  i = 0;
+    double  j = 0;
 
     (void)ac;
     my_list = dlist_new();
@@ -25,60 +25,35 @@ int     main(int ac, char **av)
         while (i < my_list->width)
         {
             // top
-            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + WIDTH / 2, ((i + j) * (32 / 2)) + HEIGHT / 2 - (my_list->p_head->z * 32),
-            ((i - j) * (64 /2)) + (WIDTH / 2) + (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - (my_list->p_head->z * 32));
+            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + WIDTH / 2, ((i + j) * (32 / 2)) + HEIGHT / 2 - my_list->p_head->z,
+            ((i - j) * (64 /2)) + (WIDTH / 2) + (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - my_list->p_head->z);
 
-            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + WIDTH / 2 + (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - (my_list->p_head->z * 32),
-            ((i - j) * (64 /2)) + WIDTH / 2, ((i + j) * (32 / 2)) + HEIGHT / 2 + 32 - (my_list->p_head->z * 32));
+            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + WIDTH / 2 + (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - my_list->p_head->z,
+            ((i - j) * (64 /2)) + WIDTH / 2, ((i + j) * (32 / 2)) + HEIGHT / 2 + 32 - my_list->p_head->z);
 
-            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + (WIDTH / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 - (my_list->p_head->z * 32),
-             ((i - j) * (64 /2)) + (WIDTH / 2) - (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - (my_list->p_head->z * 32));
+            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + (WIDTH / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 - my_list->p_head->z,
+             ((i - j) * (64 /2)) + (WIDTH / 2) - (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - my_list->p_head->z);
 
-            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + (WIDTH / 2) - (64 / 2) + 2, ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - (my_list->p_head->z * 32),
-             ((i - j) * (64 /2)) + WIDTH / 2 + 2, ((i + j) * (32 / 2)) + HEIGHT / 2 + 32 - (my_list->p_head->z * 32));
+            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + (WIDTH / 2) - (64 / 2) + 2, ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - my_list->p_head->z,
+             ((i - j) * (64 /2)) + WIDTH / 2 + 2, ((i + j) * (32 / 2)) + HEIGHT / 2 + 32 - my_list->p_head->z);
             
-            // left
-            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + WIDTH / 2, ((i + j) * (32 / 2)) + HEIGHT / 2 - (my_list->p_head->z * 32),
-            ((i - j) * (64 /2)) + (WIDTH / 2) + (64 / 2) - (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) + (32 / 2) - (my_list->p_head->z * 32));
+            if (my_list->p_head->z != 0)
+            {
+                // left 
+                tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + (WIDTH / 2) - (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - my_list->p_head->z,
+                ((i - j) * (64 /2)) + (WIDTH / 2) - (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2));
+                // right
+                tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + (WIDTH / 2) + (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - my_list->p_head->z,
+                ((i - j) * (64 /2)) + (WIDTH / 2) + (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2));
 
-            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + WIDTH / 2 + (64 / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + (32 / 2) - (my_list->p_head->z * 32),
-            ((i - j) * (64 /2)) + WIDTH / 2, ((i + j) * (32 / 2)) + HEIGHT / 2 + 32 - (my_list->p_head->z * 32));
-
-            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + (WIDTH / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + 32 - (my_list->p_head->z * 32),
-             ((i - j) * (64 /2)) + (WIDTH / 2), ((i + j) * (32 / 2)) + HEIGHT / 2 + 32);
-
-            tracerSegment(mlx, mlx_win, &img, ((i - j) * (64 /2)) + (WIDTH / 2) + 2, ((i + j) * (32 / 2)) + HEIGHT / 2 + 32,
-             ((i - j) * (64 /2)) + WIDTH / 2 + 2 - 64 / 2, ((i + j) * (32 / 2)) + HEIGHT / 2 + 32 / 2);
-
+            }
 
             ++i;
             my_list->p_head = my_list->p_head->p_next;
         }
         ++j;
     }
+
     mlx_loop(mlx);
-
-    /*while (i < my_list->height)
-    {
-        tracerSegment(mlx, mlx_win, &img, 50, 50 + j, 50 + (PIXEL_SPACE * my_list->width), 50 + j);
-        j += PIXEL_SPACE;
-        ++i;
-    }
-    i = 0;
-    j = 0;
-    while (i <= my_list->width)
-    {
-        tracerSegment(mlx, mlx_win, &img, 50 + j, 50, 50 + j, 50 + (PIXEL_SPACE * (my_list->height - 1)));
-        j += PIXEL_SPACE;
-        ++i;
-    }*/
-
-    while (my_list->p_head != NULL)
-    {
-        printf("x=%d y=%d z=%d\n", my_list->p_head->x, my_list->p_head->y, my_list->p_head->z);
-        my_list->p_head = my_list->p_head->p_next;
-    }
-    printf("\nwidth=%d\nheight=%d.", my_list->width, my_list->height);
-    
     return (0);
 }

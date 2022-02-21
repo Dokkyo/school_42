@@ -17,7 +17,7 @@ t_Dlist	*dlist_new(void)
 	return (p_new);
 }
 
-int	dlist_append(t_Dlist *p_list, char *nbr, int i)
+int	dlist_append(t_Dlist *p_list, char *nbr)
 {
 	struct s_node	*p_new;
 
@@ -29,8 +29,6 @@ int	dlist_append(t_Dlist *p_list, char *nbr, int i)
 			ft_putstr_fd("Allocation failed", 1);
 			return (-1);
 		}
-		p_new->x = i;
-		p_new->y = p_list->height;
         p_new->z = ft_atoi(nbr);
         p_new->p_next = NULL;
         if (p_list->p_head == NULL)
