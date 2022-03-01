@@ -58,7 +58,7 @@
 
 NAME	= fdf
 
-SRCS	= main.c parse.c parse_utils.c bresenham.c draw.c
+SRCS	= main.c parse.c parse_utils.c bresenham.c draw.c draw_utils.c
 
 OBJS	= ${SRCS:.c=.o}
 OBJS	:= $(addprefix objs/,${OBJS})

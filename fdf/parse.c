@@ -86,7 +86,7 @@ void    ParseOn(t_Dlist *p_list, int fd){
     }
 }
 
-int		**ft_fill_board(int **board, t_Dlist *p_list)
+int     **ft_fill_board(int **board, t_Dlist *p_list)
 {
 	int i;
 	int j;
