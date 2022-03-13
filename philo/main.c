@@ -5,8 +5,6 @@ void    *start(void *arg)
     t_philo *p;
     p = arg;
 
-    /*while (1)
-    {
         gettimeofday(&p->tv1, NULL);
         printf("%d %d has taken a fork\n", p->tv1.tv_usec, p->philo_n);
         gettimeofday(&p->tv1, NULL);
@@ -18,11 +16,10 @@ void    *start(void *arg)
         gettimeofday(&p->tv1, NULL);
         printf("%d %d is thinking\n", p->tv1.tv_usec, p->philo_n);
         gettimeofday(&p->tv1, NULL);
-        if ((unsigned long)p->tv1.tv_usec - (unsigned long)p->infos.tv.tv_usec >= p->infos.time_to_die)
-            break ;
-    }*/
-    printf("test\n");
-    usleep(2000000);
+        //if ((unsigned int)p->tv1.tv_usec - (unsigned int)p->infos.tv.tv_usec >= p->infos.time_to_die)
+          //  break;
+    //printf("test\n");
+    //usleep(2000000);
     return (0);
 }
 

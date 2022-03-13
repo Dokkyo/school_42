@@ -7,10 +7,10 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-unsigned long   ft_atoi(const char *nptr, int ac)
+unsigned int   ft_atoi(const char *nptr, int ac)
 {
-	unsigned long   i;
-	unsigned long   res;
+	unsigned int   i;
+	unsigned int   res;
 	int		        sign;
 
 	res = 0;
@@ -42,7 +42,7 @@ void    init_t_args(int ac, char **arg, t_args *args)
 
 	i = 0;
 	j = 1;
-	args->tab = malloc(sizeof(unsigned long) * (ac - 1));
+	args->tab = malloc(sizeof(unsigned int) * (ac - 1));
 	if (!args->tab)
 		allocation_error();
 	while (j < ac)
