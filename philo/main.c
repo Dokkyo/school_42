@@ -2,45 +2,51 @@
 
 void    *start(void *arg)
 {
-    t_args *t;
-    static int     i;
+    t_philo *p;
+    p = arg;
 
-    t = arg;
-    pthread_mutex_lock(&t->mutex);
-    //while (++i < t->nb_philo)
-    //{
-        usleep(1000000);
-        printf("philo %d attend\n", t->philo[i].philo_n);
-        ++i;
-    //}
-    pthread_mutex_unlock(&t->mutex);
+    /*while (1)
+    {
+        gettimeofday(&p->tv1, NULL);
+        printf("%d %d has taken a fork\n", p->tv1.tv_usec, p->philo_n);
+        gettimeofday(&p->tv1, NULL);
+        printf("%d %d is eating\n", p->tv1.tv_usec, p->philo_n);
+        usleep(p->infos.time_to_eat);
+        gettimeofday(&p->tv1, NULL);
+        printf("%d %d is sleeping\n", p->tv1.tv_usec, p->philo_n);
+        usleep(p->infos.time_to_sleep);
+        gettimeofday(&p->tv1, NULL);
+        printf("%d %d is thinking\n", p->tv1.tv_usec, p->philo_n);
+        gettimeofday(&p->tv1, NULL);
+        if ((unsigned long)p->tv1.tv_usec - (unsigned long)p->infos.tv.tv_usec >= p->infos.time_to_die)
+            break ;
+    }*/
+    printf("test\n");
+    usleep(2000000);
+    return (0);
 }
 
 int main(int ac, char **av)
 {
     t_args      args;
+    t_infos     infos_threads;
+    pthread_t   *t;
     int         i;
 
     if (ac == 5 || ac == 6)
         init_t_args(ac, av, &args);
     else
         args_nbr_error();
-    pthread_mutex_init(&args.mutex, NULL);
-    args.philo = malloc(sizeof(t_philo) * args.nb_philo);
+    init_t_infos(&infos_threads, &args, ac);
+    t = malloc(sizeof(pthread_t) * infos_threads.nb_philo);
     i = -1;
-    while (++i < args.nb_philo)
+    while (++i < (int)infos_threads.nb_philo)
     {
         args.philo[i].philo_n = i + 1;
-        pthread_create(&args.philo[i].th, NULL, &start, &args);
-        printf("thread %d executing\n", i + 1);
+        pthread_create(&t[i], NULL, &start, &args.philo[i]);
     }
     i = -1;
-    while (++i < args.nb_philo)
-    {
-        pthread_join(args.philo[i].th, NULL);
-        printf("thread %d has finished execution\n", i + 1);
-    }
-    pthread_mutex_destroy(&args.mutex);
-    free(args.philo);
+    while (++i < (int)infos_threads.nb_philo)
+        pthread_join(t[i], NULL);
     return (0);
 }

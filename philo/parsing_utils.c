@@ -37,29 +37,32 @@ unsigned long   ft_atoi(const char *nptr, int ac)
 
 void    init_t_args(int ac, char **arg, t_args *args)
 {
-	int i;
+	int	i;
+	int	j;
 
-    args->nb_philo = ft_atoi(arg[1], 1);
-    args->time_to_die = ft_atoi(arg[2], 2);
-    args->time_to_eat = ft_atoi(arg[3], 3);
-    args->time_to_sleep = ft_atoi(arg[4], 4);
-    if (ac == 6)
-        args->nb_times_eat = ft_atoi(arg[5], 5);
-	/*pthread_mutex_init(&args->mutex, NULL);
-	pthread_mutex_init(&args->philo->mutex1, NULL);
-	args->philo = malloc(sizeof(args->philo) * args->nb_philo);
-    i = -1;
-    while (++i < args->nb_philo)
-    {
-        pthread_create(&args->philo[i].th, NULL, &start, &args);
-        printf("thread %d executing\n", i + 1);
-    }
-    i = -1;
-    while (++i < args->nb_philo)
-    {
-        pthread_join(args->philo[i].th, NULL);
-        printf("thread %d has finished execution\n", i + 1);
-    }
-	//pthread_mutex_destroy(&args->philo->mutex1);
-	pthread_mutex_destroy(&args->mutex);*/
+	i = 0;
+	j = 1;
+	args->tab = malloc(sizeof(unsigned long) * (ac - 1));
+	if (!args->tab)
+		allocation_error();
+	while (j < ac)
+	{
+		args->tab[i] = ft_atoi(arg[j], j);
+		++i;
+		++j;
+	}
+	args->philo = malloc(sizeof(t_philo) * args->tab[0]);
+	if (!args->philo)
+		allocation_error();
+}
+
+void	init_t_infos(t_infos *ithread, t_args *args, int ac)
+{
+	ithread->nb_philo = args->tab[0];
+	ithread->time_to_die = args->tab[1];
+	ithread->time_to_eat = args->tab[2];
+	ithread->time_to_sleep = args->tab[3];
+	if (ac == 6)
+		ithread->nb_philo = args->tab[4];
+	gettimeofday(&ithread->tv, NULL);
 }
