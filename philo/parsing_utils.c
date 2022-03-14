@@ -56,6 +56,19 @@ void    init_t_args(int ac, char **arg, t_args *args)
 		allocation_error();
 }
 
+void	init_mutex(t_infos *ithreads)
+{
+	unsigned int i;
+
+	i = -1;
+	while (++i < ithreads->nb_philo)
+		pthread_mutex_init(&ithreads->fork[i], NULL);
+	i = -1;
+	while (++i < ithreads->nb_philo)
+		pthread_mutex_init(&ithreads->eat[i], NULL);
+	pthread_mutex_init(&ithreads->print, NULL);
+}
+
 void	init_t_infos(t_infos *ithread, t_args *args, int ac)
 {
 	ithread->nb_philo = args->tab[0];
@@ -65,4 +78,11 @@ void	init_t_infos(t_infos *ithread, t_args *args, int ac)
 	if (ac == 6)
 		ithread->nb_philo = args->tab[4];
 	gettimeofday(&ithread->tv, NULL);
+	ithread->fork = malloc(sizeof(pthread_mutex_t) * ithread->nb_philo);
+	if (!ithread->fork)
+		allocation_error();
+	ithread->eat = malloc(sizeof(pthread_mutex_t) * ithread->nb_philo);
+	if (!ithread->eat)
+		allocation_error();
+	init_mutex(ithread);
 }

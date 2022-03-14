@@ -10,11 +10,14 @@
 
 typedef struct  s_infos
 {
-    unsigned int   nb_philo;
-    unsigned int   time_to_die;
-    unsigned int   time_to_eat;
-    unsigned int   time_to_sleep;
-    unsigned int   nb_times_eat;
+    unsigned int        nb_philo;
+    unsigned int        time_to_die;
+    unsigned int        time_to_eat;
+    unsigned int        time_to_sleep;
+    unsigned int        nb_times_eat;
+    pthread_mutex_t     *fork;
+    pthread_mutex_t     *eat;
+    pthread_mutex_t     print;
     struct timeval  tv;
 }               t_infos;
 
@@ -22,7 +25,8 @@ typedef struct  s_philo
 {
     int             philo_n;
     struct timeval  tv1;
-    t_infos         infos;
+    long int        last_time_eat;
+    t_infos         *infos;
 }               t_philo;
 
 typedef struct  s_args

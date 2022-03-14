@@ -1,26 +1,36 @@
 #include "philo.h"
 
+void    ft_fork(t_philo *ph)
+{
+    if(ph->infos->nb_philo >= 2)
+    {
+        if (ph->philo_n % 2 != 0)
+        {
+            pthread_mutex_lock(&ph->infos->fork[ph->philo_n - 1]);
+            pthread_mutex_lock(&ph->infos->fork[ph->philo_n]);
+            gettimeofday(&ph->tv1, NULL);
+            printf("%ld %d has taken a fork\n", ph->tv1.tv_usec, ph->philo_n);
+            pthread_mutex_unlock(&ph->infos->fork[ph->philo_n - 1]);
+            pthread_mutex_unlock(&ph->infos->fork[ph->philo_n]);
+        }
+        if (ph->philo_n % 2 == 0)
+        {
+            pthread_mutex_lock(&ph->infos->fork[ph->philo_n - 1]);
+            pthread_mutex_lock(&ph->infos->fork[ph->philo_n - 2]);
+            gettimeofday(&ph->tv1, NULL);
+            printf("%ld %d has taken a fork\n", ph->tv1.tv_usec, ph->philo_n);
+            pthread_mutex_unlock(&ph->infos->fork[ph->philo_n - 1]);
+            pthread_mutex_unlock(&ph->infos->fork[ph->philo_n - 2]);
+        }
+    }
+}
+
 void    *start(void *arg)
 {
     t_philo *p;
     p = arg;
 
-        gettimeofday(&p->tv1, NULL);
-        printf("%d %d has taken a fork\n", p->tv1.tv_usec, p->philo_n);
-        gettimeofday(&p->tv1, NULL);
-        printf("%d %d is eating\n", p->tv1.tv_usec, p->philo_n);
-        usleep(p->infos.time_to_eat);
-        gettimeofday(&p->tv1, NULL);
-        printf("%d %d is sleeping\n", p->tv1.tv_usec, p->philo_n);
-        usleep(p->infos.time_to_sleep);
-        gettimeofday(&p->tv1, NULL);
-        printf("%d %d is thinking\n", p->tv1.tv_usec, p->philo_n);
-        gettimeofday(&p->tv1, NULL);
-        //if ((unsigned int)p->tv1.tv_usec - (unsigned int)p->infos.tv.tv_usec >= p->infos.time_to_die)
-          //  break;
-    //printf("test\n");
-    //usleep(2000000);
-    return (0);
+    ft_fork(p);
 }
 
 int main(int ac, char **av)
@@ -39,6 +49,7 @@ int main(int ac, char **av)
     i = -1;
     while (++i < (int)infos_threads.nb_philo)
     {
+        args.philo[i].infos = &infos_threads;
         args.philo[i].philo_n = i + 1;
         pthread_create(&t[i], NULL, &start, &args.philo[i]);
     }
