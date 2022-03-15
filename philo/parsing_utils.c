@@ -63,9 +63,6 @@ void	init_mutex(t_infos *ithreads)
 	i = -1;
 	while (++i < ithreads->nb_philo)
 		pthread_mutex_init(&ithreads->fork[i], NULL);
-	i = -1;
-	while (++i < ithreads->nb_philo)
-		pthread_mutex_init(&ithreads->eat[i], NULL);
 	pthread_mutex_init(&ithreads->print, NULL);
 }
 
@@ -76,13 +73,9 @@ void	init_t_infos(t_infos *ithread, t_args *args, int ac)
 	ithread->time_to_eat = args->tab[2];
 	ithread->time_to_sleep = args->tab[3];
 	if (ac == 6)
-		ithread->nb_philo = args->tab[4];
-	gettimeofday(&ithread->tv, NULL);
+		ithread->nb_times_eat = args->tab[4];
 	ithread->fork = malloc(sizeof(pthread_mutex_t) * ithread->nb_philo);
 	if (!ithread->fork)
-		allocation_error();
-	ithread->eat = malloc(sizeof(pthread_mutex_t) * ithread->nb_philo);
-	if (!ithread->eat)
 		allocation_error();
 	init_mutex(ithread);
 }
