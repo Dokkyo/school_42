@@ -64,6 +64,7 @@ void	init_mutex(t_infos *ithreads)
 	while (++i < ithreads->nb_philo)
 		pthread_mutex_init(&ithreads->fork[i], NULL);
 	pthread_mutex_init(&ithreads->print, NULL);
+	//pthread_mutex_init(&ithreads->die, NULL);
 }
 
 void	init_t_infos(t_infos *ithread, t_args *args, int ac)
