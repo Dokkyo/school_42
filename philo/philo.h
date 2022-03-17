@@ -15,6 +15,7 @@ typedef struct  s_infos
     unsigned int        time_to_eat;
     unsigned int        time_to_sleep;
     unsigned int        nb_times_eat;
+    long int            time_start;
     pthread_mutex_t     *fork;
     pthread_mutex_t     print;
     int                 dead;
@@ -23,8 +24,7 @@ typedef struct  s_infos
 typedef struct  s_philo
 {
     int             philo_n;
-    long int        time_now;
-    long int        time_start;
+    long int        last_time_eat;
     t_infos         *infos;
     int             eat_counter;
     int             dead;
@@ -45,6 +45,11 @@ void            *start(void *arg);
 void	        init_t_infos(t_infos *ithread, t_args *args, int ac);
 long int        get_time(void);
 long int        get_time_now(t_philo *info);
+void            ft_die(t_philo *ph);
+void            ft_think(t_philo *ph);
+void            ft_sleep(t_philo *ph);
+void            ft_eat(t_philo *ph);
+void            ft_fork(t_philo *ph);
 
 
 
