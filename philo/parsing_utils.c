@@ -54,6 +54,7 @@ void    init_t_args(int ac, char **arg, t_args *args)
 	args->philo = malloc(sizeof(t_philo) * args->tab[0]);
 	if (!args->philo)
 		allocation_error();
+	
 }
 
 void	init_mutex(t_infos *ithreads)
@@ -72,10 +73,30 @@ void	init_t_infos(t_infos *ithread, t_args *args, int ac)
 	ithread->time_to_die = args->tab[1];
 	ithread->time_to_eat = args->tab[2];
 	ithread->time_to_sleep = args->tab[3];
+	ithread->six_args = 0;
+	ithread->nb_times_eat = 0;
 	if (ac == 6)
+	{
 		ithread->nb_times_eat = args->tab[4];
+		ithread->six_args = 1;
+	}
+	ithread->dead = 0;
 	ithread->fork = malloc(sizeof(pthread_mutex_t) * ithread->nb_philo);
 	if (!ithread->fork)
 		allocation_error();
 	init_mutex(ithread);
+}
+
+void	init_t_philo(t_args *args, t_infos *info)
+{
+	int	i;
+
+    i = -1;
+    while (++i < (int)args->tab[0])
+    {
+        args->philo[i].infos = info;
+        args->philo[i].eat_counter = 0;
+        args->philo[i].philo_n = i + 1;
+        args->philo[i].dead = 0;
+    }
 }

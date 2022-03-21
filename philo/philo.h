@@ -15,20 +15,27 @@ typedef struct  s_infos
     unsigned int        time_to_eat;
     unsigned int        time_to_sleep;
     unsigned int        nb_times_eat;
+    int                 six_args;
     long int            time_start;
     pthread_mutex_t     *fork;
     pthread_mutex_t     print;
     int                 dead;
 }               t_infos;
-
+ 
 typedef struct  s_philo
 {
     int             philo_n;
     long int        last_time_eat;
     t_infos         *infos;
-    int             eat_counter;
+    unsigned int    eat_counter;
     int             dead;
 }               t_philo;
+
+typedef struct  s_check
+{
+    t_philo     *ph;
+    t_infos     *infos;
+}               t_check;
 
 typedef struct  s_args
 {
@@ -50,7 +57,7 @@ void            ft_think(t_philo *ph);
 void            ft_sleep(t_philo *ph);
 void            ft_eat(t_philo *ph);
 void            ft_fork(t_philo *ph);
-
+void            init_t_philo(t_args *args, t_infos *info);
 
 
 #endif
