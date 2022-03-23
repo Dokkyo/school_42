@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: naben-za <marvin@42.fr>					+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2022/03/23 11:19:20 by naben-za		  #+#	#+#			 */
+/*   Updated: 2022/03/23 11:20:37 by naben-za         ###   ########.fr       */
+/*																			*/
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	ft_isspace(int c)
@@ -7,11 +19,11 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-unsigned int   ft_atoi(const char *nptr, int ac)
+unsigned int	ft_atoi(const char *nptr, int ac)
 {
-	unsigned int   i;
-	unsigned int   res;
-	int		        sign;
+	unsigned int	i;
+	unsigned int	res;
+	int				sign;
 
 	res = 0;
 	sign = 1;

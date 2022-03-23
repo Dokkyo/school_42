@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: naben-za <marvin@42.fr>					+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2022/03/23 11:17:18 by naben-za		  #+#	#+#			 */
+/*   Updated: 2022/03/23 11:19:06 by naben-za         ###   ########.fr       */
+/*																			*/
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void    init_t_args(int ac, char **arg, t_args *args)
+void	init_t_args(int ac, char **arg, t_args *args)
 {
 	int	i;
 	int	j;
@@ -19,12 +31,11 @@ void    init_t_args(int ac, char **arg, t_args *args)
 	args->philo = malloc(sizeof(t_philo) * args->tab[0]);
 	if (!args->philo)
 		allocation_error();
-	
 }
 
 void	init_mutex(t_infos *ithreads)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = -1;
 	while (++i < ithreads->nb_philo)
@@ -57,12 +68,12 @@ void	init_t_philo(t_args *args, t_infos *info)
 {
 	int	i;
 
-    i = -1;
-    while (++i < (int)args->tab[0])
-    {
-        args->philo[i].infos = info;
-        args->philo[i].eat_counter = 0;
-        args->philo[i].philo_n = i + 1;
-        args->philo[i].dead = 0;
-    }
+	i = -1;
+	while (++i < (int)args->tab[0])
+	{
+		args->philo[i].infos = info;
+		args->philo[i].eat_counter = 0;
+		args->philo[i].philo_n = i + 1;
+		args->philo[i].dead = 0;
+	}
 }
