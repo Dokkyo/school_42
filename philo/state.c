@@ -31,15 +31,25 @@ void    ft_sleep(t_philo *ph)
 
 void    ft_eat(t_philo *ph)
 {
-    pthread_mutex_lock(&ph->infos->print);
-    if (ph->dead != 1)
-        printf("%ld %d is eating\n", get_time() - ph->infos->time_start, ph->philo_n);
-    if (ph->infos->six_args == 1)
+    if (ph->infos->six_args == 0)
     {
-        if (ph->eat_counter != ph->infos->nb_times_eat)
-            ++ph->eat_counter;
+        pthread_mutex_lock(&ph->infos->print);
+        if (ph->dead != 1)
+            printf("%ld %d is eating\n", get_time() - ph->infos->time_start, ph->philo_n);
+        pthread_mutex_unlock(&ph->infos->print);
     }
-    pthread_mutex_unlock(&ph->infos->print);
+    else
+    {
+        pthread_mutex_lock(&ph->infos->print);
+        if (ph->dead != 1 && ph->eat_counter != ph->infos->nb_times_eat)
+        {
+            printf("%ld %d is eating\n", get_time() - ph->infos->time_start, ph->philo_n);
+            ++ph->eat_counter;
+        }
+        else if (ph->eat_counter == ph->infos->nb_times_eat)
+            ++ph->infos->end_eat;
+        pthread_mutex_unlock(&ph->infos->print);
+    }
     usleep(ph->infos->time_to_eat * 1000);
     ph->last_time_eat = get_time();
 }
@@ -50,34 +60,25 @@ void    ft_fork(t_philo *ph)
     {
         if (ph->philo_n % 2 != 0)
         {
-            pthread_mutex_lock(&ph->infos->fork[ph->philo_n - 1]);
-            pthread_mutex_lock(&ph->infos->fork[ph->philo_n]);
-            pthread_mutex_lock(&ph->infos->print);
-            if (ph->dead != 1)
-            {   
-                printf("%ld %d has taken left fork\n", get_time() - ph->infos->time_start, ph->philo_n);
-                printf("%ld %d has taken right fork\n", get_time() - ph->infos->time_start, ph->philo_n);
-            }
-            pthread_mutex_unlock(&ph->infos->print);
-            ft_eat(ph);
-            pthread_mutex_unlock(&ph->infos->fork[ph->philo_n - 1]);
-            pthread_mutex_unlock(&ph->infos->fork[ph->philo_n]);
+            if (ph->infos->six_args == 0)
+                odd_without_six_arg(ph);
+            else
+                odd_with_six_arg(ph);
         }
         usleep(500);
         if (ph->philo_n % 2 == 0)
         {
-            pthread_mutex_lock(&ph->infos->fork[ph->philo_n - 1]);
-            pthread_mutex_lock(&ph->infos->fork[ph->philo_n - 2]);
-            pthread_mutex_lock(&ph->infos->print);
-            if (ph->dead != 1)
-            {
-                printf("%ld %d has taken left fork\n", get_time() - ph->infos->time_start, ph->philo_n);
-                printf("%ld %d has taken right fork\n", get_time() - ph->infos->time_start, ph->philo_n);
-            }
-            pthread_mutex_unlock(&ph->infos->print);
-            ft_eat(ph);
-            pthread_mutex_unlock(&ph->infos->fork[ph->philo_n - 1]);
-            pthread_mutex_unlock(&ph->infos->fork[ph->philo_n - 2]);
+            if (ph->infos->six_args == 0)
+                pair_without_six_arg(ph);
+            else
+                pair_with_six_arg(ph);
+        }
+        if (ph->philo_n == (int)ph->infos->nb_philo)
+        {
+            if (ph->infos->six_args == 0)
+                pair_without_six_arg(ph);
+            else
+                pair_with_six_arg(ph);
         }
     }
 }

@@ -20,6 +20,7 @@ typedef struct  s_infos
     pthread_mutex_t     *fork;
     pthread_mutex_t     print;
     int                 dead;
+    int                 end_eat;
 }               t_infos;
  
 typedef struct  s_philo
@@ -47,6 +48,7 @@ void            args_nbr_error(void);
 void            args_syntax_error(int ac);
 void            allocation_error(void);
 unsigned int    ft_atoi(const char *nptr, int ac);
+int	            ft_isspace(int c);
 void            init_t_args(int ac, char **arg, t_args *args);
 void            *start(void *arg);
 void	        init_t_infos(t_infos *ithread, t_args *args, int ac);
@@ -58,6 +60,14 @@ void            ft_sleep(t_philo *ph);
 void            ft_eat(t_philo *ph);
 void            ft_fork(t_philo *ph);
 void            init_t_philo(t_args *args, t_infos *info);
-
+void            odd_without_six_arg(t_philo *ph);
+void            odd_with_six_arg(t_philo *ph);
+void            pair_without_six_arg(t_philo *ph);
+void            pair_with_six_arg(t_philo *ph);
+int             ft_check_death(t_check *ph);
+int             ft_check_eat(t_check *ph);
+void            *philo(void *arg);
+void            *checker(void *arg);
+void            launch_threads(t_args *args, t_infos *info, t_check *ch);
 
 #endif
