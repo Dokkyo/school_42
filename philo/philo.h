@@ -29,7 +29,7 @@ typedef struct s_infos
 	unsigned int		nb_times_eat;
 	int					six_args;
 	long int			time_start;
-	pthread_mutex_t		*fork;
+	//pthread_mutex_t		*fork;
 	pthread_mutex_t		print;
 	pthread_mutex_t		death;
 	pthread_mutex_t		eat;
@@ -40,8 +40,8 @@ typedef struct s_infos
 typedef struct s_philo
 {
 	int				philo_n;
-	//pthread_mutex_t	l_fork;
-	//pthread_mutex_t	*r_fork;
+	pthread_mutex_t	l_fork;
+	pthread_mutex_t	*r_fork;
 	long int		last_time_eat;
 	t_infos			*infos;
 	unsigned int	eat_counter;

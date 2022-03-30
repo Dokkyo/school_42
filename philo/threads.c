@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-int	ft_check_death(t_check *ph)
+void	ft_death(t_check *ph)
 {
 	int	i;
 
@@ -21,15 +21,38 @@ int	ft_check_death(t_check *ph)
 	{
 		while (++i < (int)ph->infos->nb_philo)
 			ph->ph[i].dead = 1;
-		return (1);
 	}
-	return (0);
 }
 
 int	ft_check_eat(t_check *ph)
 {
 	if (ph->infos->end_eat == (int)ph->infos->nb_philo)
 		return (1);
+	return (0);
+}
+
+int ft_check_dead(t_check *ph)
+{
+	ft_usleep(ph->infos->time_to_die);
+	pthread_mutex_lock(&ph->infos->death);
+	pthread_mutex_lock(&ph->infos->eat);
+	if (get_time_now(ph->ph) >= (long int)ph->infos->time_to_die)
+	{
+		pthread_mutex_unlock(&ph->infos->eat);
+		pthread_mutex_unlock(&ph->infos->death);
+		pthread_mutex_lock(&ph->infos->print);
+		if (ph->ph->dead != 1)
+			printf("%ld %d died\n",
+				get_time() - ph->infos->time_start, ph->ph->philo_n);
+		ph->infos->dead = 1;
+		pthread_mutex_unlock(&ph->infos->print);
+		ft_death(ph);
+		pthread_mutex_unlock(&ph->infos->eat);
+		pthread_mutex_unlock(&ph->infos->death);
+		return (1);
+	}
+	pthread_mutex_unlock(&ph->infos->eat);
+	pthread_mutex_unlock(&ph->infos->death);
 	return (0);
 }
 
@@ -43,7 +66,7 @@ void	*philo(void *arg)
 		ft_fork(p);
 		ft_sleep(p);
 		ft_think(p);
-		ft_die(p);
+		//ft_die(p);
 		if (p->infos->dead == 1 || p->infos->end_eat == (int)p->infos->nb_philo)
 			break ;
 	}
@@ -57,14 +80,14 @@ void	*checker(void *arg)
 	i = arg;
 	while (1)
 	{
-		if (ft_check_death(i) == 1 || ft_check_eat(i) == 1)
+		if (ft_check_dead(i) == 1 || ft_check_eat(i) == 1)
 			break ;
 	}
 	return (0);
 }
 
 void	launch_threads(t_args *args, t_infos *info, t_check *ch)
-{
+{ 
 	int			i;
 	pthread_t	*p;
 	pthread_t	w;

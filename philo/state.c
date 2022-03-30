@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	ft_die(t_philo *ph)
+/*void	ft_die(t_philo *ph)
 {
 	pthread_mutex_lock(&ph->infos->death);
 	pthread_mutex_lock(&ph->infos->eat);
@@ -29,7 +29,7 @@ void	ft_die(t_philo *ph)
 	}
 	pthread_mutex_unlock(&ph->infos->eat);
 	pthread_mutex_unlock(&ph->infos->death);
-}
+}*/
 
 void	ft_think(t_philo *ph)
 {

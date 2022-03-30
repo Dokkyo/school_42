@@ -35,11 +35,11 @@ void	init_t_args(int ac, char **arg, t_args *args)
 
 void	init_mutex(t_infos *ithreads)
 {
-	unsigned int	i;
+	//unsigned int	i;
 
-	i = -1;
-	while (++i < ithreads->nb_philo)
-		pthread_mutex_init(&ithreads->fork[i], NULL);
+	//i = -1;
+	//while (++i < ithreads->nb_philo)
+	//	pthread_mutex_init(&ithreads->fork[i], NULL);
 	pthread_mutex_init(&ithreads->print, NULL);
 	pthread_mutex_init(&ithreads->death, NULL);
 	pthread_mutex_init(&ithreads->eat, NULL);
@@ -60,9 +60,9 @@ void	init_t_infos(t_infos *ithread, t_args *args, int ac)
 		ithread->nb_times_eat = args->tab[4];
 		ithread->six_args = 1;
 	}
-	ithread->fork = malloc(sizeof(pthread_mutex_t) * ithread->nb_philo);
+	/*ithread->fork = malloc(sizeof(pthread_mutex_t) * ithread->nb_philo);
 	if (!ithread->fork)
-		allocation_error();
+		allocation_error();*/
 	init_mutex(ithread);
 }
 
@@ -77,5 +77,11 @@ void	init_t_philo(t_args *args, t_infos *info)
 		args->philo[i].eat_counter = 0;
 		args->philo[i].philo_n = i + 1;
 		args->philo[i].dead = 0;
+	    args->philo[i].r_fork = NULL;
+        pthread_mutex_init(&args->philo[i].l_fork, NULL);
+        if (i == (int)info->nb_philo - 1)
+            args->philo[i].r_fork = &args->philo[0].l_fork;
+        else
+            args->philo[i].r_fork = &args->philo[i + 1].l_fork;
 	}
 }
