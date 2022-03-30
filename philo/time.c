@@ -27,3 +27,13 @@ long int	get_time_now(t_philo *ph)
 	t_now = get_time();
 	return (t_now - ph->last_time_eat);
 }
+
+void	ft_usleep(long int time_in_ms)
+{
+	long int	start_time;
+
+	start_time = 0;
+	start_time = get_time();
+	while ((get_time() - start_time) < time_in_ms)
+		usleep(time_in_ms / 10);
+}

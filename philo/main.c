@@ -32,6 +32,8 @@ int	main(int ac, char **av)
 	while (++i < (int)infos_threads.nb_philo)
 		pthread_mutex_destroy(&infos_threads.fork[i]);
 	pthread_mutex_destroy(&infos_threads.print);
+	pthread_mutex_destroy(&infos_threads.eat);
+	pthread_mutex_destroy(&infos_threads.death);
 	free(args.philo);
 	free(args.tab);
 	free(infos_threads.fork);

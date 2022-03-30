@@ -41,6 +41,8 @@ void	init_mutex(t_infos *ithreads)
 	while (++i < ithreads->nb_philo)
 		pthread_mutex_init(&ithreads->fork[i], NULL);
 	pthread_mutex_init(&ithreads->print, NULL);
+	pthread_mutex_init(&ithreads->death, NULL);
+	pthread_mutex_init(&ithreads->eat, NULL);
 }
 
 void	init_t_infos(t_infos *ithread, t_args *args, int ac)
@@ -52,12 +54,12 @@ void	init_t_infos(t_infos *ithread, t_args *args, int ac)
 	ithread->six_args = 0;
 	ithread->nb_times_eat = 0;
 	ithread->end_eat = 0;
+	ithread->dead = 0;
 	if (ac == 6)
 	{
 		ithread->nb_times_eat = args->tab[4];
 		ithread->six_args = 1;
 	}
-	ithread->dead = 0;
 	ithread->fork = malloc(sizeof(pthread_mutex_t) * ithread->nb_philo);
 	if (!ithread->fork)
 		allocation_error();

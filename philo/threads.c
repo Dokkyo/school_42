@@ -56,8 +56,10 @@ void	*checker(void *arg)
 
 	i = arg;
 	while (1)
+	{
 		if (ft_check_death(i) == 1 || ft_check_eat(i) == 1)
 			break ;
+	}
 	return (0);
 }
 
