@@ -1,6 +1,6 @@
 NAME	= philo
 
-SRCS	= main.c threads.c errors1.c parsing.c parsing_utils.c state.c state_utils.c time.c
+SRCS	= main.c threads.c errors.c parsing.c parsing_utils.c state.c state_utils.c time.c
 
 OBJS	= ${SRCS:.c=.o}
 OBJS	:= $(addprefix objs/,${OBJS})

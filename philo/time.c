@@ -6,7 +6,7 @@
 /*   By: naben-za <marvin@42.fr>					+#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2022/03/23 11:36:24 by naben-za		  #+#	#+#			 */
-/*   Updated: 2022/03/23 11:36:48 by naben-za         ###   ########.fr       */
+/*   Updated: 2022/03/30 18:46:21 by naben-za         ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ long int	get_time(void)
 
 long int	get_time_now(t_philo *ph)
 {
-	long int	t_now;
-
-	t_now = get_time();
-	return (t_now - ph->last_time_eat);
+	return ((get_time() - ph->infos->time_start)
+		- (ph->last_time_eat - ph->infos->time_start));
 }
 
 void	ft_usleep(long int time_in_ms)

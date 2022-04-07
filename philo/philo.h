@@ -6,7 +6,7 @@
 /*   By: naben-za <marvin@42.fr>					+#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2022/03/23 11:21:10 by naben-za		  #+#	#+#			 */
-/*   Updated: 2022/03/23 11:26:49 by naben-za         ###   ########.fr       */
+/*   Updated: 2022/03/30 19:09:01 by naben-za         ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_infos
 	unsigned int		nb_times_eat;
 	int					six_args;
 	long int			time_start;
-	//pthread_mutex_t		*fork;
 	pthread_mutex_t		print;
 	pthread_mutex_t		death;
 	pthread_mutex_t		eat;
@@ -56,14 +55,16 @@ typedef struct s_check
 
 typedef struct s_args
 {
-	unsigned int	*tab;
-	t_philo			*philo;
+	int		*tab;
+	t_philo	*philo;
 }				t_args;
 
 void			args_nbr_error(void);
 void			args_syntax_error(int ac);
 void			allocation_error(void);
-unsigned int	ft_atoi(const char *nptr, int ac);
+void			negativ_args(int *tab, int ac);
+void			anti_lock_order(t_philo *ph);
+int				ft_atoi(const char *nptr, int ac);
 int				ft_isspace(int c);
 void			init_t_args(int ac, char **arg, t_args *args);
 void			*start(void *arg);
@@ -82,9 +83,9 @@ void			odd_with_six_arg(t_philo *ph);
 void			pair_without_six_arg(t_philo *ph);
 void			pair_with_six_arg(t_philo *ph);
 int				ft_check_death(t_check *ph);
-int				ft_check_eat(t_check *ph);
 void			*philo(void *arg);
 void			*checker(void *arg);
 void			launch_threads(t_args *args, t_infos *info, t_check *ch);
+void			ft_death(t_check *ph);
 
 #endif
