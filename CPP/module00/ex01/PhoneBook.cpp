@@ -30,10 +30,12 @@ std::string    PhoneBook::checkFormat(int idx, std::string str)
         if (strg.size() < 10)
         {
             while (strg.size() < 10)
-                strg.push_back(' ');
+                strg.insert(0, 1, ' ');
         }
-        else
+        else if (this->contact[idx].Name().size() > 10)
+        {
             strg.replace(9, 1, 1,'.');
+        }
         return (strg);
     }
     else if (str == "Last Name")
@@ -42,9 +44,9 @@ std::string    PhoneBook::checkFormat(int idx, std::string str)
         if (strg.size() < 10)
         {
             while (strg.size() < 10)
-                strg.push_back(' ');
+                strg.insert(0, 1, ' ');
         }
-        else
+        else if (this->contact[idx].LastName().size() > 10)
             strg.replace(9, 1, 1,'.');
         return (strg);
     }
@@ -54,9 +56,9 @@ std::string    PhoneBook::checkFormat(int idx, std::string str)
         if (strg.size() < 10)
         {
             while (strg.size() < 10)
-                strg.push_back(' ');
+                strg.insert(0, 1, ' ');
         }
-        else
+        else if (this->contact[idx].NickName().size() > 10)
             strg.replace(9, 1, 1,'.');
         return (strg);
     }
@@ -68,13 +70,16 @@ void    PhoneBook::printRegistered()
     int         idx = -1;
     std::string str;
 
-    std::cout   << "  Index   " << "|" 
-                << "First Name" << "|"
-                << "Last Name " << "|"
-                << " Nickname " << std::endl;
+    std::cout   << std::setfill(' ') << std::setw(10) << "Index";
+    std::cout   << "|";
+    std::cout   << std::setfill(' ') << std::setw(10) << "First Name";
+    std::cout   << "|";
+    std::cout   << std::setfill(' ') << std::setw(10) << "Last Name";
+    std::cout   << "|";
+    std::cout   << std::setfill(' ') << std::setw(10) << "Nickname" << std::endl;
     while (++idx < this->nb_contact)
     {
-        std::cout << idx + 1 << "         ";
+        std::cout << std::setfill(' ') << std::setw(10) << idx + 1;
         str = checkFormat(idx, "First Name");
         std::cout << " " << str;
         str = checkFormat(idx, "Last Name");
@@ -94,6 +99,9 @@ void    PhoneBook::searchContact()
     {
         std::cout << "Index du contact : ";
         std::getline(std::cin, str);
+        if (std::cin.eof()) {
+            break;
+        }
     }
     idx = std::atoi(str.c_str());
     if (idx >= 1 && idx <= this->nb_contact)

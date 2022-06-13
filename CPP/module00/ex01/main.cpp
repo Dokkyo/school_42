@@ -17,6 +17,9 @@ int main( void )
     {
         std::cout << "ADD / SEARCH / EXIT" << std::endl;
         std::getline(std::cin, str);
+        if (std::cin.eof()) {
+            break;
+        }
         if (str == "EXIT")
             break;
         else if (str == "ADD")
