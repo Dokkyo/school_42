@@ -10,11 +10,11 @@ class Contact {
 
         void    setInfo(std::string *data, std::string str);
         void    askInfo( void );
-        std::string    Name( void );
-        std::string    LastName( void );
-        std::string    NickName( void );
-        std::string    PhoneNumber( void );
-        std::string    DarkestSecret( void );
+        std::string    getName( void );
+        std::string    getLastName( void );
+        std::string    getNickName( void );
+        std::string    getPhoneNumber( void );
+        std::string    getDarkestSecret( void );
 
     private:
         std::string    _Name;

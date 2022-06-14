@@ -4,7 +4,6 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <cstring>
 #include <cstdlib>
 #include "Contact.hpp"
 
@@ -15,14 +14,13 @@ class PhoneBook {
         PhoneBook(int nb,int old);
         ~PhoneBook ();
         void        newContact();
-        void        printRegistered();
-        std::string checkFormat(int idx, std::string str);
+        void        DisplayFormattedField(std::string str);
+        void        DisplayMenu();
         void        searchContact();
 
     private:
 
         int     nb_contact;
-        int     idx;
         int     oldest;
         Contact contact[8];
 };

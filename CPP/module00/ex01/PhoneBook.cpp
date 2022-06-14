@@ -20,52 +20,25 @@ void    PhoneBook::newContact()
     }
 }
 
-std::string    PhoneBook::checkFormat(int idx, std::string str)
+void    PhoneBook::DisplayFormattedField(std::string str)
 {
-    std::string strg;
-
-    if (str == "First Name")
+    std::cout << " ";
+    if (str.size() < 10)
     {
-        strg = this->contact[idx].Name().substr(0, 10);
-        if (strg.size() < 10)
-        {
-            while (strg.size() < 10)
-                strg.insert(0, 1, ' ');
-        }
-        else if (this->contact[idx].Name().size() > 10)
-        {
-            strg.replace(9, 1, 1,'.');
-        }
-        return (strg);
+        std::cout << std::setfill(' ') << std::setw(10);
+        std::cout << str;
     }
-    else if (str == "Last Name")
+    else if (str.size() > 10)
     {
-        strg = this->contact[idx].LastName().substr(0, 10);
-        if (strg.size() < 10)
-        {
-            while (strg.size() < 10)
-                strg.insert(0, 1, ' ');
-        }
-        else if (this->contact[idx].LastName().size() > 10)
-            strg.replace(9, 1, 1,'.');
-        return (strg);
+        str = str.substr(0, 10);
+        str.replace(9, 1, 1,'.');
+        std::cout << str;
     }
-    else if (str == "Nickname")
-    {
-        strg = this->contact[idx].NickName().substr(0, 10);
-        if (strg.size() < 10)
-        {
-            while (strg.size() < 10)
-                strg.insert(0, 1, ' ');
-        }
-        else if (this->contact[idx].NickName().size() > 10)
-            strg.replace(9, 1, 1,'.');
-        return (strg);
-    }
-    return (strg);
+    else
+        std::cout << str;
 }
 
-void    PhoneBook::printRegistered()
+void    PhoneBook::DisplayMenu()
 {
     int         idx = -1;
     std::string str;
@@ -79,13 +52,15 @@ void    PhoneBook::printRegistered()
     std::cout   << std::setfill(' ') << std::setw(10) << "Nickname" << std::endl;
     while (++idx < this->nb_contact)
     {
-        std::cout << std::setfill(' ') << std::setw(10) << idx + 1;
-        str = checkFormat(idx, "First Name");
-        std::cout << " " << str;
-        str = checkFormat(idx, "Last Name");
-        std::cout << " " << str;
-        str = checkFormat(idx, "Nickname");
-        std::cout << " " << str << std::endl;
+        std::cout << std::setfill(' ') << std::setw(10);
+        std::cout << idx + 1;
+        str = contact[idx].getName();
+        DisplayFormattedField(str);
+        str = contact[idx].getLastName();
+        DisplayFormattedField(str);
+        str = contact[idx].getNickName();
+        DisplayFormattedField(str);
+        std::cout << std::endl;
     }
 }
 
@@ -94,7 +69,7 @@ void    PhoneBook::searchContact()
     std::string     str;
     int             idx;
 
-    printRegistered();
+    DisplayMenu();
     while (str.empty())
     {
         std::cout << "Index du contact : ";
@@ -106,11 +81,11 @@ void    PhoneBook::searchContact()
     idx = std::atoi(str.c_str());
     if (idx >= 1 && idx <= this->nb_contact)
     {
-        std::cout << this->contact[idx - 1].Name() << std::endl;
-        std::cout << this->contact[idx - 1].LastName() << std::endl;
-        std::cout << this->contact[idx - 1].NickName() << std::endl;
-        std::cout << this->contact[idx - 1].PhoneNumber() << std::endl;
-        std::cout << this->contact[idx - 1].DarkestSecret() << std::endl;
+        std::cout << this->contact[idx - 1].getName() << std::endl;
+        std::cout << this->contact[idx - 1].getLastName() << std::endl;
+        std::cout << this->contact[idx - 1].getNickName() << std::endl;
+        std::cout << this->contact[idx - 1].getPhoneNumber() << std::endl;
+        std::cout << this->contact[idx - 1].getDarkestSecret() << std::endl;
     }
     else if (idx >= 1 && idx <= 8)
         std::cout << "Aucun contact enregistré." << std::endl;
