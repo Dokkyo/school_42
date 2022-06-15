@@ -1,22 +1,16 @@
 #include "Zombie.hpp"
 
-void    Zombie::announce()
+int main()
 {
-    std::cout << this->_name << ": BraiiiiinnnnzzzzzZ.." << std::endl;
-}
+    Zombie  z2("Stack");
+    Zombie  *z1;
 
-Zombie* Zombie::newZombie( std::string name )
-{
-    Zombie  zombie;
+    z2.announce();
+    z1 = z2.newZombie("Heap");
+    z1->announce();
 
-    zombie._name = name;
-    return (&zombie);
-}
+    z2.randomChump("Stack aussi");
 
-void Zombie::randomChump( std::string name )
-{
-    Zombie  zombie;
-
-    zombie._name = name;
-    std::cout << zombie._name << ": BraiiiiinnnnzzzzzZ.." << std::endl;
+    delete z1;
+    return (0);
 }
