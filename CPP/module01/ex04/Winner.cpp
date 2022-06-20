@@ -1,6 +1,6 @@
 #include "Winner.hpp"
 
-Winner::Winner(std::string str1, std::string str2, std::string file) : _s1(str1), _s2(str2), _filename(file)
+Winner::Winner()
 {
     std::cout << "Constructor called" << std::endl;
 }
@@ -8,6 +8,13 @@ Winner::Winner(std::string str1, std::string str2, std::string file) : _s1(str1)
 Winner::~Winner()
 {
     std::cout << "Destructor called" << std::endl;
+}
+
+void    Winner::setValues(std::string file, std::string str1, std::string str2)
+{
+    this->_filename = file; 
+    this->_s1 = str1;
+    this->_s2 = str2;
 }
 
 void    Winner::newFile()
@@ -19,30 +26,33 @@ void    Winner::newFile()
     std::string             line;
     std::size_t             pos_found;
 
-    if (this->_s1.compare(this->_s2) != 0)
+    if (ifs.is_open())
     {
-        while (!ifs.eof())
+        if (this->_s1.compare(this->_s2) != 0)
         {
-            std::getline(ifs, line);
-            pos_found = line.find(this->_s1);
-            while (pos_found >= 0 && pos_found <= line.size())
+            while (!ifs.eof())
             {
-                line.erase(pos_found, this->_s1.size());
-                line.insert(pos_found, this->_s2);
-                pos_found = line.find(this->_s1, pos_found + this->_s2.size());
+                std::getline(ifs, line);
+                pos_found = line.find(this->_s1);
+                while (pos_found <= line.size())
+                {
+                    line.erase(pos_found, this->_s1.size());
+                    line.insert(pos_found, this->_s2);
+                    pos_found = line.find(this->_s1, pos_found + this->_s2.size());
+                }
+                ofs << line;
+                ofs << '\n';
             }
-            ofs << line;
-            ofs << '\n';
         }
-    }
-    else
-    {
-        while (!ifs.eof())
+        else
         {
-            std::getline(ifs, line);
-            ofs << line;
-            ofs << '\n';
+            while (!ifs.eof())
+            {
+                std::getline(ifs, line);
+                ofs << line;
+                ofs << '\n';
+            }
         }
+        ifs.close();
     }
-    ifs.close();
 }

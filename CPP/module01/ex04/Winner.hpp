@@ -17,10 +17,10 @@ class Winner
 
     public:
 
-        Winner(std::string str1, std::string str2, std::string file);
+        Winner();
         ~Winner();
 
-        void    openFile();
+        void    setValues(std::string file, std::string str1, std::string str2);
         void    newFile();
 };
 

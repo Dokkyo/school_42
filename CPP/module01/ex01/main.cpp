@@ -2,14 +2,15 @@
 
 int main()
 {
-    Zombie  z2("Mother Zombie");
     Zombie  *z1;
+    int     i = 0;
 
-    z1 = z2.zombieHorde(10, "Child zombie");
-    int i = 0;
-    while (i++ < 10)
-        z1->announce();
+    z1 = zombieHorde(10, "Zombie");
+
+    while (i < 10)
+        z1[i++].announce();
 
     delete [] z1;
+
     return (0);
 }

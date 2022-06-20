@@ -4,7 +4,7 @@ int main()
 {
     Harl    instance;
 
-    instance.complain("info");
+    instance.complain("INFO");
 
     return (0);
 }

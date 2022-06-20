@@ -23,7 +23,7 @@ void    Harl::error()
 void    Harl::complain(std::string level)
 {
     void    (Harl::*complaint[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    std::string levels[4] = {"debug", "info", "warning", "error"};
+    std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     int     i = -1;
 
     while (++i < 4)
@@ -31,19 +31,16 @@ void    Harl::complain(std::string level)
             break;
     switch (i)
     {
-    case 0:
-        (this->*complaint[i])();
-        break;
-    case 1:
-        (this->*complaint[i])();
-        break;
-    case 2:
-        (this->*complaint[i])();
-        break;
-    case 3:
-        (this->*complaint[i])();
-        break;
-    case 4:
-        std::cout << "I am not sure how tired I am today..." << std::endl;
+        case 0:
+            (this->*complaint[0])();
+        case 1:
+            (this->*complaint[1])();
+        case 2:
+            (this->*complaint[2])();
+        case 3:
+            (this->*complaint[3])();
+            break;
+        case 4:
+            std::cout << "I am not sure how tired I am today..." << std::endl;
     }
 }

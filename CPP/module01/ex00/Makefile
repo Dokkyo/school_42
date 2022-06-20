@@ -7,7 +7,7 @@ OBJS = ${SRCS:.cpp=.o}
 
 CC = c++
 
-FLAGS = -Wall -Wextra -Werror -g -std=c++98 
+FLAGS = -Wall -Wextra -Werror -std=c++98 
 
 RM = rm -rf
 
@@ -16,16 +16,16 @@ NAME = zombie
 all :		$(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) -o $@ $^ $(FLAGS)
 
-%.o: %.cpp %.hpp
-	@$(CC) $(FLAGS) -c $< -o $@
+%.o: %.cpp
+	$(CC) -o $@ -c $< $(FLAGS)
 
 clean :
-			@${RM} ${OBJS}
+			${RM} ${OBJS}
 
 fclean :	clean
-			@${RM} $(NAME)
+			${RM} $(NAME)
 
 re :		fclean all
 

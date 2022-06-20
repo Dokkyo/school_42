@@ -1,10 +1,13 @@
 #include "Winner.hpp"
 
-int main()
+int main(int ac, char **av)
 {
-    Winner          win("o", "o", "file");
+    if (ac == 4)
+    {
+        Winner  win;
 
-    win.newFile();
-
+        win.setValues(av[1], av[2], av[3]);
+        win.newFile();
+    }
     return (0);
 }
