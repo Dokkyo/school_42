@@ -20,7 +20,8 @@ class Winner
         Winner(std::string str1, std::string str2, std::string file);
         ~Winner();
 
-        void    setNewFile();
+        void    openFile();
+        void    newFile();
 };
 
 #endif

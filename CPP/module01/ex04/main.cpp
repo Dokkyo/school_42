@@ -2,8 +2,9 @@
 
 int main()
 {
-    Winner  win("a", "o", "file");
+    Winner          win("o", "o", "file");
 
-    win.setNewFile();
+    win.newFile();
+
     return (0);
 }
