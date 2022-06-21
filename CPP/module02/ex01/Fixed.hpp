@@ -10,7 +10,9 @@ class Fixed
     private:
 
         int         _value;
-        int const   _bit;
+        int const   _bitFractPart;
+        //int         intPart;
+        //int         fracPart;
 
     public:
 

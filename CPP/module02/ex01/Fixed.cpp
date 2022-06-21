@@ -1,20 +1,21 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() : _value(0), _bit(8)
+Fixed::Fixed() : _value(0), _bitFractPart(8)
 {
     std::cout << "Default Constructor Called" << std::endl;
-
+    (void)_bitFractPart;
     return;
 }
 
-Fixed::Fixed(int nbr) : _value(nbr) , _bit(8)
+Fixed::Fixed(int nbr) : _value(nbr) , _bitFractPart(8)
 {
     std::cout << "Int Constructor Called" << std::endl;
+    (void)_bitFractPart;
     //Convertir ici
     return;
 }
 
-Fixed::Fixed(float nbr) : _value(nbr) , _bit(8)
+Fixed::Fixed(float nbr) : _value(nbr) , _bitFractPart(8)
 {
     std::cout << "Float Constructor Called" << std::endl;
     //Convertir ici
@@ -28,7 +29,7 @@ Fixed::~Fixed()
     return;
 }
 
-Fixed::Fixed(Fixed const & src) : _bit(8)
+Fixed::Fixed(Fixed const & src) : _bitFractPart(8)
 {
     std::cout << "Copy Constructor Called" << std::endl;
 
@@ -48,6 +49,7 @@ Fixed &     Fixed::operator=(Fixed const & rhs)
 
 std::ostream &      operator<<(std::ostream & o, Fixed const & rhs)
 {
+    o.setf ( std::ios::fixed, std::ios::floatfield );
     o << rhs.toFloat();
 
     return (o);
@@ -55,8 +57,6 @@ std::ostream &      operator<<(std::ostream & o, Fixed const & rhs)
 
 int         Fixed::getRawBits(void) const
 {
-    std::cout << "getRawBits member function Called" << std::endl;
-
     return (this->_value);
 }
 
@@ -69,12 +69,12 @@ void        Fixed::setRawBits(int const raw)
 
 float       Fixed::toFloat( void ) const
 {
-    //A changer
-    return((float)this->_value);
+    //A finir
+    return(this->_value);
 }
 
 int         Fixed::toInt( void ) const
 {
-    //A changer
-    return((int)this->_value);
+    //A finir
+    return(this->_value);
 }
