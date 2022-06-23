@@ -8,8 +8,8 @@ class Fixed
 
     private:
 
-        int         _value;
-        int const   _bit;
+        int                 _value;
+        static int const    _bit;
 
     public:
 
