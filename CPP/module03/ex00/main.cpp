@@ -2,8 +2,8 @@
 
 int main()
 {
-    ClapTrap    Johnny("Johnny", 10, 10, 0);
-    ClapTrap    Amber("Amber", 10, 10, 0);
+    ClapTrap    Johnny("Johnny");
+    ClapTrap    Amber("Amber");
     int         i = 0;
     
     while (i++ < 10)
