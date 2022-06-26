@@ -8,6 +8,7 @@ Dog::Dog() : _type("Dog")
 
 Dog::Dog(Dog & src) : Animal()
 {
+    //copie profonde ?
     *this = src;
 }
 

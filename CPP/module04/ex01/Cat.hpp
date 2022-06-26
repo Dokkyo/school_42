@@ -8,13 +8,10 @@ class Cat : public Animal
     private:
 
         Brain   *brain;
-
-    protected:
-        
         std::string _type;
 
     public:
-        
+
         Cat();
         Cat(Cat & src);
         Cat& operator=(Cat & rhs);
@@ -24,4 +21,4 @@ class Cat : public Animal
         virtual std::string     getType() const;
 };
 
- #endif
+#endif

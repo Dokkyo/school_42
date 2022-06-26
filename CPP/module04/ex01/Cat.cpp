@@ -8,6 +8,7 @@ Cat::Cat() : _type("Cat")
 
 Cat::Cat(Cat & src) : Animal()
 {
+    //copie profonde ?
     *this = src;
 }
 

@@ -15,7 +15,7 @@ class Brain
         Brain();
         Brain(Brain & src);
         Brain& operator=(Brain & rhs);
-        virtual ~Brain();
+        ~Brain();
 };
 
 #endif

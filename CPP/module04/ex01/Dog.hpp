@@ -8,9 +8,6 @@ class Dog : public Animal
     private:
 
         Brain   *brain;
-
-    protected:
-        
         std::string _type;
 
     public:

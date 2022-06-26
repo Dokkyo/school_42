@@ -7,6 +7,7 @@ Brain::Brain()
 
 Brain::Brain(Brain & src)
 {
+    //copie profonde ?
     *this = src;
 }
 
