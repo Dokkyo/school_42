@@ -16,7 +16,7 @@ Fixed::~Fixed()
     return;
 }
 
-Fixed::Fixed(Fixed const & src) : _bit(8)
+Fixed::Fixed(Fixed const & src)
 {
     std::cout << "Copy Constructor Called" << std::endl;
     
