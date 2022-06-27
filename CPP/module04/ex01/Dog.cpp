@@ -8,13 +8,15 @@ Dog::Dog() : _type("Dog")
 
 Dog::Dog(Dog & src) : Animal()
 {
-    //copie profonde ?
+    std::cout << "Dog Copy constructor called" << std::endl;
+    this->brain = new Brain();
     *this = src;
 }
 
 Dog& Dog::operator=(Dog & rhs)
 {
     this->_type = rhs._type;
+    *this->brain = *rhs.brain;
 
     return(*this);
 }
@@ -33,4 +35,9 @@ void    Dog::makeSound() const
 std::string     Dog::getType() const
 {
     return (this->_type);
+}
+
+Brain*  Dog::getBrain() const
+{
+    return (this->brain);
 }

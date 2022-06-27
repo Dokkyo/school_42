@@ -8,13 +8,15 @@ Cat::Cat() : _type("Cat")
 
 Cat::Cat(Cat & src) : Animal()
 {
-    //copie profonde ?
+    std::cout << "Cat Copy constructor called" << std::endl;
+    this->brain = new Brain();
     *this = src;
 }
 
 Cat& Cat::operator=(Cat & rhs)
 {
     this->_type = rhs._type;
+    *this->brain = *rhs.brain;
 
     return(*this);
 }
@@ -33,4 +35,9 @@ void    Cat::makeSound() const
 std::string     Cat::getType() const
 {
     return (this->_type);
+}
+
+Brain  *Cat::getBrain() const
+{
+    return (this->brain);
 }

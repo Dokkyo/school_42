@@ -8,6 +8,9 @@ class Dog : public Animal
     private:
 
         Brain   *brain;
+
+    protected:
+        
         std::string _type;
 
     public:
@@ -17,8 +20,9 @@ class Dog : public Animal
         Dog& operator=(Dog & rhs);
         virtual ~Dog();
 
-        virtual void    makeSound() const;
+        virtual void            makeSound() const;
         virtual std::string     getType() const;
+        virtual Brain          *getBrain() const;
 };
 
  #endif

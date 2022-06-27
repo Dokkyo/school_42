@@ -7,6 +7,7 @@ Animal::Animal() : _type("Animal")
 
 Animal::Animal(Animal & src)
 {
+    std::cout << "Animal Copy constructor called" << std::endl;
     *this = src;
 }
 
