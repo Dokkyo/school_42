@@ -1,16 +1,14 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include <iostream>
-#include <string>
-#include <stdexcept>
+#include "classes.hpp"
 
 class Bureaucrat
 {
     private:
     
-        std::string   _name;
-        int           _grade;
+        std::string     _name;
+        int             _grade;
 
     public:
     
@@ -39,9 +37,10 @@ class Bureaucrat
 
         std::string     getName() const;
         int             getGrade() const;
-
         void            upGrade();
         void            downGrade();
+        void            signForm();
+
 };
 
 std::ostream &  operator<<(std::ostream & o, Bureaucrat & src);
