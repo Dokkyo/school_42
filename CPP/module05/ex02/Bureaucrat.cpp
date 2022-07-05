@@ -75,18 +75,29 @@ void            Bureaucrat::downGrade()
     }
 }
 
-void            Bureaucrat::signForm(Form & src)
+void            Bureaucrat::signForm(AForm & src)
 {
     if (src.getIsSigned() == false && this->getGrade() > src.getToSign())
-    {    
-        std::cout << this->getName() << " " << "couldn't signed" << " " << src.getName() << " " << "because: ";
+    {
+        std::cout << this->getName() << " " << "couldn't sign" << " " << src.getName() << " " << "because: ";
         src.beSigned(*this);
     }
     else if (src.getIsSigned() == true)
-        std::cout << this->getName() << " " << "couldn't signed" << " " << src.getName() << " " << "because it's already signed.";
+        std::cout << this->getName() << " " << "couldn't sign" << " " << src.getName() << " " << "because it's already signed.";
     else
     {
         src.beSigned(*this);
         std::cout << this->getName() << " " << "signed" << " " << src.getName() << std::endl;
     }
+}
+
+void            Bureaucrat::executeForm(AForm & src)
+{
+    if (src.getIsSigned() == false || this->getGrade() > src.getToExec())
+    {
+        std::cout << this->getName() << " " << "couldn't execute" << " " << src.getName() << " " << "because: ";
+        src.execute(*this);
+    }
+    src.execute(*this);
+    std::cout << this->getName() << " executed " << src.getName() << std::endl;
 }

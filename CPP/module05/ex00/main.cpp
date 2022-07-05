@@ -8,11 +8,11 @@ int main()
 
         std::cout << a << std::endl;
     }
-    catch(Bureaucrat::GradeTooHighException e)
+    catch(Bureaucrat::GradeTooHighException &e)
     {
         std::cout << e.what() << std::endl;
     }
-    catch(Bureaucrat::GradeTooLowException e)
+    catch(Bureaucrat::GradeTooLowException &e)
     {
         std::cout << e.what() << std::endl;
     }

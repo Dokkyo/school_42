@@ -3,6 +3,8 @@
 
 #include "classes.hpp"
 
+class Form;
+
 class Bureaucrat
 {
     private:
@@ -39,7 +41,7 @@ class Bureaucrat
         int             getGrade() const;
         void            upGrade();
         void            downGrade();
-        void            signForm();
+        void            signForm(Form & src);
 
 };
 
