@@ -14,7 +14,7 @@ class Conv
         float           _f;
         char            _c;
         std::string     _str;
-    
+
     public:
 
         Conv(std::string str);
@@ -22,14 +22,15 @@ class Conv
         Conv &  operator=(Conv & rhs);
         ~Conv();
 
+        int     isChar();
         int     isInt();
         int     isDouble();
-        int     isChar();
         int     isFloat();
 
+        void    setC(int i);
         void    detectType();
         void    caster();
-        void    display() const;
+        void    display();
 };
 
 #endif

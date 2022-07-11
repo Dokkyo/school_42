@@ -2,9 +2,6 @@
 
 Conv::Conv(std::string str) : _str(str)
 {
-    std::cout << _d << std::endl;
-    std::cout << static_cast<char>(_d) << std::endl;
-    
     std::cout << "Conv Constructor Called" << std::endl;
 }
 
@@ -28,27 +25,45 @@ Conv::~Conv()
     std::cout << "Conv Destructor Called" << std::endl;
 }
 
-int     Conv::isInt()
-{
-    
-}
+// int     Conv::isChar()
+// {
 
-void    Conv::detectType()
-{
+// }
 
-}
+// int     Conv::isInt()
+// {
 
-void    Conv::caster()
-{
-    this->_i = static_cast<int>(this->_d);
-    this->_f = static_cast<float>(this->_d);
-    this->_c = static_cast<char>(this->_d);
-}
+// }
 
-void    Conv::display() const
-{
-    std::cout << "char: " << this->_c << std::endl;
-    std::cout << "int: " << this->_i << std::endl;
-    std::cout << "float: " << this->_f << std::endl;
-    std::cout << "double: " << this->_d << std::endl;
-}
+// int     Conv::isDouble()
+// {
+
+// }
+
+// int     Conv::isFloat()
+// {
+
+// }
+
+// void    Conv::setC(int i)
+// {
+//     this->_c = i;
+// }
+
+// void    Conv::detectType()
+// {
+
+// }
+
+// void    Conv::caster()
+// {
+
+// }
+
+// void    Conv::display()
+// {
+//     std::cout << "char: ";
+//     std::cout << "int: " << this->_i << std::endl;
+//     std::cout << "float: " << this->_f << std::endl;
+//     std::cout << "double: " << this->_d << std::endl;
+// }

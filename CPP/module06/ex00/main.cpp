@@ -9,7 +9,6 @@ int main(int ac, char **av)
         Conv scal(av[1]);
 
         scal.detectType();
-        scal.caster();
         scal.display();
     }
     return (0);
