@@ -5,7 +5,11 @@
 
 class C : public Base
 {
+    public:
 
+       ~C(){
+        std::cout << "C Destructor called" << std::endl;
+       }
 };
 
 #endif

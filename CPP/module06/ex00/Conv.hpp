@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
+#include <iomanip>
 
 class Conv
 {
@@ -13,8 +14,9 @@ class Conv
         double          _d;
         float           _f;
         char            _c;
+        int             _ret;
         std::string     _str;
-
+    
     public:
 
         Conv(std::string str);
@@ -22,15 +24,13 @@ class Conv
         Conv &  operator=(Conv & rhs);
         ~Conv();
 
-        int     isChar();
-        int     isInt();
-        int     isDouble();
-        int     isFloat();
+        int     isInteger(std::string str) const;
+        int     isDouble(std::string str) const;
+        int     isChar(std::string str) const;
+        int     isFloat(std::string str) const;
 
-        void    setC(int i);
         void    detectType();
-        void    caster();
-        void    display();
+        void    display() const;
 };
 
 #endif

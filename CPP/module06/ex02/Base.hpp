@@ -8,7 +8,9 @@ class Base
 {
     public:
 
-       virtual ~Base();
+       virtual ~Base(){
+        std::cout << "Base Destructor called" << std::endl;
+       }
 };
 
 #endif
