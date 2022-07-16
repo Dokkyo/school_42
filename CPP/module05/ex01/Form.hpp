@@ -7,10 +7,10 @@ class Form
 {
     private:
 
-        std::string     _name;
-        bool            _isSigned;
-        int             _gradeToSign;
-        int             _gradeToExec;
+        std::string const    _name;
+        bool                _isSigned;
+        int const           _gradeToSign;
+        int const           _gradeToExec;
 
     public:
     
