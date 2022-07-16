@@ -19,6 +19,7 @@ class Array
         }
 
         Array(unsigned int n) : _size(n), _tab(new T[n]){
+
             std::cout << "Array constructor Called with size " << n << std::endl;
         }
 
@@ -33,10 +34,12 @@ class Array
 
         Array & operator=(Array & rhs){
             this->_size = rhs._size;
-            *this->_tab = *rhs._tab;
+            for(unsigned int i = 0; i < this->_size; ++i)
+            {
+                this->_tab[i] = rhs._tab[i];
+            }
             return (*this);
         }
-
         ~Array(){
             delete [] this->_tab;
             std::cout << "Array Destructor Called" << std::endl;
