@@ -1,7 +1,5 @@
 #include "Conv.hpp"
 
-
-
 int main(int ac, char **av)
 {
     if (ac != 2)

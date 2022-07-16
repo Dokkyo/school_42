@@ -1,10 +1,6 @@
-#ifndef FUNCTIONS_HPP
-#define FUNCTIONS_HPP
-
 #include <iostream>
 #include <string>
 #include <iomanip>
-
 
 template <typename T>
 void   iter(T *tab, T size, T&(add)(T&))
@@ -21,5 +17,3 @@ U & add(U & elem)
     elem += 1;
     return(elem);
 }
-
-#endif

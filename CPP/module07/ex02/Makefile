@@ -8,7 +8,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -rf
 
-NAME = iter
+NAME = array
 
 all :		$(NAME)
 

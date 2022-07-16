@@ -1,4 +1,4 @@
-#include "iter.hpp"
+#include "iter.tpp"
 
 int main( void ) 
 {
@@ -15,6 +15,7 @@ int main( void )
     
     std::cout << std::endl;
     std::cout << "---------------------------------------------" << std::endl;
+    std::cout << std::endl;
     int tab2[10];
     i = -1;
     while (++i < 10)
