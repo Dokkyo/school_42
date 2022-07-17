@@ -1,6 +1,6 @@
 #include "classes.hpp"
 
-Form::Form()
+Form::Form() : _name("Empty"), _gradeToSign(0), _gradeToExec(0)
 {
     std::cout << "Form Constructor Called" << std::endl;
 }
@@ -18,17 +18,15 @@ Form::Form(std::string name, int toSign, int toExec) : _name(name), _gradeToSign
     }
 }
 
-Form::Form(Form & src)
+Form::Form(Form & src) : _name(src._name), _gradeToSign(src._gradeToSign), _gradeToExec(src._gradeToExec)
 {
+    std::cout << "Copy Constructor Called" << std::endl;
     *this = src;
 }
 
 Form&     Form::operator=(Form & rhs)
 {
-    this->_name = rhs._name;
     this->_isSigned = rhs._isSigned;
-    this->_gradeToSign = rhs._gradeToSign;
-    this->_gradeToExec = rhs._gradeToExec;
 
     return (*this);
 }

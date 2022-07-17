@@ -1,5 +1,10 @@
 #include "classes.hpp"
 
+AForm::AForm() : _name("Empty"), _gradeToSign(0), _gradeToExec(0)
+{
+    std::cout << "AForm Constructor Called" << std::endl;
+}
+
 AForm::AForm(std::string name, int toSign, int toExec) : _name(name), _gradeToSign(toSign), _gradeToExec(toExec)
 {
     if (toSign < 1 || toExec < 1)
@@ -13,17 +18,15 @@ AForm::AForm(std::string name, int toSign, int toExec) : _name(name), _gradeToSi
     }
 }
 
-AForm::AForm(AForm & src)
+AForm::AForm(AForm & src) : _name(src._name), _gradeToSign(src._gradeToSign), _gradeToExec(src._gradeToExec)
 {
+    std::cout << "Copy Constructor Called" << std::endl;
     *this = src;
 }
 
 AForm&     AForm::operator=(AForm & rhs)
 {
-    this->_name = rhs._name;
     this->_isSigned = rhs._isSigned;
-    this->_gradeToSign = rhs._gradeToSign;
-    this->_gradeToExec = rhs._gradeToExec;
 
     return (*this);
 }

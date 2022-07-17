@@ -14,6 +14,7 @@ class AForm
 
     public:
 
+        AForm();
         AForm(std::string name, int toSign, int toExec);
         AForm(AForm & src);
         AForm& operator=(AForm & rhs);
