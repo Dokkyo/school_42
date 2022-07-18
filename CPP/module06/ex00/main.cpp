@@ -7,9 +7,13 @@ int main(int ac, char **av)
     else
     {
         Conv conv(av[1]);
+        int i = 0;
 
-        conv.detectType();
-        conv.display();
+        i = conv.detectType();
+        if (i == 0)
+            conv.display();
+        else
+            std::cout << "wtf ?" << std::endl;
     }
 
     return (0);

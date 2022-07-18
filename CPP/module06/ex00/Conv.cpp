@@ -76,36 +76,41 @@ int     Conv::isInteger(std::string str) const
     return 0;
 }
 
-void    Conv::detectType()
+int    Conv::detectType()
 {
     if ((this->_ret = isChar(this->_str)))
-        {
-            this->_c = this->_str[0];
-            this->_i = static_cast<int>(this->_c);
-            this->_f = static_cast<float>(this->_c);
-            this->_d = static_cast<double>(this->_c);
-        }
-        else if((this->_ret = isDouble(this->_str)))
-        {
-            this->_d = strtod(this->_str.c_str(), NULL);
-            this->_c = static_cast<char>(this->_d);
-            this->_i = static_cast<int>(this->_d);
-            this->_f = static_cast<float>(this->_d);
-        }
-        else if((this->_ret = isFloat(this->_str)))
-        {
-            this->_f = strtof(this->_str.c_str(), NULL);
-            this->_c = static_cast<char>(this->_f);
-            this->_i = static_cast<int>(this->_f);
-            this->_d = static_cast<double>(this->_f);
-        }
-        else if((this->_ret = isInteger(this->_str)))
-        {
-            this->_i = atoi(this->_str.c_str());
-            this->_c = static_cast<char>(this->_i);
-            this->_d = static_cast<double>(this->_i);
-            this->_f = static_cast<float>(this->_i);
-        }
+    {
+        this->_c = this->_str[0];
+        this->_i = static_cast<int>(this->_c);
+        this->_f = static_cast<float>(this->_c);
+        this->_d = static_cast<double>(this->_c);
+        return (0);
+    }
+    else if((this->_ret = isDouble(this->_str)))
+    {
+        this->_d = strtod(this->_str.c_str(), NULL);
+        this->_c = static_cast<char>(this->_d);
+        this->_i = static_cast<int>(this->_d);
+        this->_f = static_cast<float>(this->_d);
+        return (0);
+    }
+    else if((this->_ret = isFloat(this->_str)))
+    {
+        this->_f = strtof(this->_str.c_str(), NULL);
+        this->_c = static_cast<char>(this->_f);
+        this->_i = static_cast<int>(this->_f);
+        this->_d = static_cast<double>(this->_f);
+        return (0);
+    }
+    else if((this->_ret = isInteger(this->_str)))
+    {
+        this->_i = atoi(this->_str.c_str());
+        this->_c = static_cast<char>(this->_i);
+        this->_d = static_cast<double>(this->_i);
+        this->_f = static_cast<float>(this->_i);
+        return (0);
+    }
+    return (1);
 }
 
 void    Conv::display() const

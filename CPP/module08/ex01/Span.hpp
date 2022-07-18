@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
+#include <cstdlib>
 
 class Span
 {
@@ -12,6 +13,7 @@ class Span
 
         unsigned int        _size;
         std::vector<int>    _a;
+        int                 _res;
 
     public:
 
@@ -27,7 +29,19 @@ class Span
                     return ("Maximum Numbers was added.");
                 }
         };
+        class SizeException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw()
+                {
+                    return ("Size problem.");
+                }
+        };
         void    addNumber(int nbr);
+        int     Abs(int nb);
+        int     shortestSpan();
+        int     longestSpan();
+        void    iterator(unsigned int N);
 };
 
 #endif

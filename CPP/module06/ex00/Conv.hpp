@@ -29,7 +29,7 @@ class Conv
         int     isChar(std::string str) const;
         int     isFloat(std::string str) const;
 
-        void    detectType();
+        int     detectType();
         void    display() const;
 };
 
